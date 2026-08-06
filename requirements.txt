@@ -1,0 +1,12 @@
+structlog
+fastapi
+uvicorn
+sqlalchemy
+asyncpg
+pydantic
+python-dotenv
+bcrypt
+celery
+redis
+psycopg2-binary
+passlib[bcrypt]
