@@ -5,6 +5,15 @@ FastAPI application entrypoint. Wires up routers, CORS, and a global
 exception handler that guarantees we never accidentally leak stack traces
 or internal details (which could contain sensitive info) to the client.
 """
+import sys
+from pathlib import Path
+
+# Ensure the `backend` package directory is on sys.path so `import app.*`
+# works when this module is executed directly by Streamlit or other tools
+# that don't add the backend folder to PYTHONPATH.
+# File layout: <repo-root>/backend/app/main.py -> we want to add <repo-root>/backend
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 import structlog
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
